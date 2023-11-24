@@ -5,10 +5,10 @@ import './Navbar.css';
 import { ThemeContext } from "../context/ThemeContext";
 
 export default function Navbar() {
-  const {color} = useContext(ThemeContext)
+  const {color, changeColor } = useContext(ThemeContext);
 return (
     <div className="navbar" style={{backgroundColor: color}}>
-      <nav>
+      <nav onClick={() => changeColor('pink')}>
         <Link to="/" className='brand'>
           <h1>쿠킹 레시피</h1>
         </Link>
