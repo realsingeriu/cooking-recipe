@@ -15,7 +15,7 @@ const themeReducer = (state, action) => {
 // 컴텍스트, 프로바이더에서 value값을 전역으로 제공
 export function ThemeProvider({ children }) {
   // 리듀서는 state , dispatch로 업데이트
-  const [state, dispatch] = useReducer(themeReducer, { color: 'blue'});
+  const [state, dispatch] = useReducer(themeReducer, { color: '#58249c'});
   const changeColor = (color) => {
     dispatch({type: 'CHANGE_COLOR', payload: color});
   }
