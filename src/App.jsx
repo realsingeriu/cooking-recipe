@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './pages/home/Home';
@@ -9,10 +9,12 @@ import Recipe from './pages/recipe/Recipe';
 import './App.css';
 import Navbar from './components/Navbar';
 import ThemeSelector from './components/ThemeSelector';
+import { ThemeContext } from './context/ThemeContext';
 
 function App() {
+  const {mode} = useContext(ThemeContext);
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       <BrowserRouter>
         <Navbar />
         <ThemeSelector />

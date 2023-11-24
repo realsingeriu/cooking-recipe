@@ -8,7 +8,7 @@ export default function Recipe() {
   const { error, isPending, data: recipe } = useFetch(url);
 
   return (
-    <div className="recipe">
+    <div className={`recipe ${mode}`}>
       {error && <p className="error">{error}</p>}
       {isPending && <p className="loading">로딩중...</p>}
 
