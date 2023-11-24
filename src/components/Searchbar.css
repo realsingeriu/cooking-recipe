@@ -6,3 +6,8 @@
 .searchbar input {
 	margin-left: 10px;
 }
+
+/* 한글한자씩 세로로 안되게 */
+.searchbar label {
+  word-break: keep-all;
+}
