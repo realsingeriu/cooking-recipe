@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import './Create.css';
 import { useRef, useState} from 'react';
-import { firedb } from '../../../firebase/config';
+import { firedb } from '../../firebase/config';
 
 export default function Create() {
     // State를 사용하여 각각의 입력 필드에 대한 상태를 관리합니다.
@@ -46,7 +46,7 @@ export default function Create() {
 
       try {
         await firedb.collection('recipes').add(doc);
-        navigate("/");
+        navigate("/"); //  추가 후 자동 홈 화면 전환
       } catch (error) {
       console.log(error);
       }

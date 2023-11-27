@@ -3,7 +3,7 @@ import './Recipe.css';
 import { useFetch } from '../../hooks/useFetch';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
-import { firedb } from '../../../firebase/config';
+import { firedb } from '../../firebase/config';
 
 
 export default function Recipe() {

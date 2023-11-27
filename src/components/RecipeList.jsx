@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './RecipeList.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
-import { firedb } from '../../firebase/config';
+import { firedb } from '../firebase/config';
 import Trashcan from '../assets/delete-icon.svg';
 
 

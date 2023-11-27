@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RecipeList from '../../components/RecipeList';
 import './Home.css';
-import { firedb } from '../../../firebase/config';
+import { firedb } from '../../firebase/config';
 
 
 export default function Home() {
