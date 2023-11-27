@@ -3,6 +3,7 @@ import RecipeList from '../../components/RecipeList';
 import './Home.css';
 import { firedb } from '../../../firebase/config';
 
+
 export default function Home() {
   //const { data, isPending, error } = useFetch('http://localhost:3030/recipes');
   const [data, setData] = useState(null); // 데이터
@@ -12,8 +13,8 @@ export default function Home() {
   useEffect(() => {
     // 파이어스토어에서 데이터 가져오기 
     setIsPending(true); // 데이터 가져오기 시작 
-    firedb.collection('recipes').get().then((snapshot) => {
-      console.log(snapshot.docs[0].data());
+    const unsub = firedb.collection('recipes').onSnapshot((snapshot)=> {
+      //console.log(snapshot.docs[0].data());
       if (snapshot.empty) {
         setError('레시피가 없습니다.'); //에러 메세지 
         setIsPending(false); // 작업 끌 
@@ -26,10 +27,11 @@ export default function Home() {
         setData(results);
         setIsPending(false); // 작업 끝
       }
-    }).catch(err => {
-      setError(err.message);
+    }, (error) => {
+      setError(error.message);
       setIsPending(false);
     });
+    return () => unsub();
   }, []);
 
   return (
