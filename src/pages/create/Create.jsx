@@ -38,7 +38,7 @@ export default function Create() {
     };
 
     // 폼이 제출될 때 실행되는 함수로, 입력된 데이터를 콘솔에 출력합니다.
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
       // console.log({title, method, ingredients, cookingTime});
       postData({
