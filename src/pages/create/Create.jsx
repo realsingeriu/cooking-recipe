@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import './Create.css';
-import {useEffect, useRef, useState} from 'react';
+import { useRef, useState} from 'react';
+import { firedb } from '../../../firebase/config';
 
 export default function Create() {
     // State를 사용하여 각각의 입력 필드에 대한 상태를 관리합니다.
@@ -17,11 +18,11 @@ export default function Create() {
     const navigate = useNavigate();
     // useFatch를 사용해서 데이터를 서보로 전송후 결과를 받았을때 (data가 바뀔때) 홈으로 이동
   
-    useEffect(() => {
-      if (data) {
-        navigate("/");
-      }
-    }, [data, navigate]);
+    // useEffect(() => {
+    //   if (data) {
+    //     navigate("/");
+    //   }
+    // }, [data, navigate]);
     //console.log(data);
 
     // '사용' 버튼을 클릭할 때 실행되는 함수로, 재료를 추가합니다.
@@ -41,12 +42,14 @@ export default function Create() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       // console.log({title, method, ingredients, cookingTime});
-      postData({
-        title : title,
-        method : method,
-        ingredients : ingredients,
-        cookingTime : cookingTime + '분',
-      })
+      const doc = { title : title, ingredients : ingredients, method :method, cookingTime: cookingTime + ' 분' };
+
+      try {
+        await firedb.collection('recipes').add(doc);
+        navigate("/");
+      } catch (error) {
+      console.log(error);
+      }
     };
 
   return (
