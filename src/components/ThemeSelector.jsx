@@ -10,6 +10,7 @@ const ThemeSelector = () => {
   const { changeColor, changeMode, mode } = useContext(ThemeContext);
 
   const toggleMode = () => {
+    //  현재 모드가 'dark'이면 'light', 'light'이면 'dark'으로 전환 
     changeMode(mode === 'dark' ? 'light' : 'dark');
     console.log(mode);
   };

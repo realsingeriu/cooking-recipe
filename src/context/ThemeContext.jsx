@@ -1,11 +1,14 @@
 import { createContext, useReducer, useState } from "react";
 
+// themeContext 생성
 export const ThemeContext = createContext();
-
+// 리듀서 함수 정의
 const themeReducer = (state, action) => {
   switch(action.type) {
+    // change_color는 navbar 컬러 색상 변경 
     case 'CHANGE_COLOR':
       return {...state, color: action.payload};
+      // chang_mode는 navbar 빼고 light, dark 모드로 변경
     case 'CHANGE_MODE':
       return { ...state, mode: action.payload };
       default:
@@ -25,6 +28,7 @@ export function ThemeProvider({ children }) {
   const changeMode = (mode) => {
     dispatch({ type: 'CHANGE_MODE', payload: mode });
   };
+  // themeContext.provaider를 사용하여 전역으로 상태와 함수 제공 
   return (
     <ThemeContext.Provider value={{ ...state, changeColor, changeMode}}>
       {children}
