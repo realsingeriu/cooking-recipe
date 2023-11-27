@@ -15,29 +15,33 @@ export default function Search() {
 
   useEffect(() => {
     setIsPending(true);
+    // firestore에서 레시피 데이터를 query하여 가져오는 비동기 함수 
     firedb
       .collection('recipes')
-      .where('title', '>=', query)
-      .where('title', '<=', query + '\uf8ff')
+      .where('title', '>=', query) // title이 쿼리보다 크거나 같은 경우 
+      .where('title', '<=', query + '\uf8ff') // title이 쿼리 + \uf8ff 보다 작거나 같은 경우 
       .get()
       .then((snapshot) => {
         if (snapshot.empty) {
+          // 쿼리에 해달하는 레시피가 없는 경우 
           setIsPending(false);
         } else {
+          // 쿼리에 해달하는 레시피가 있는 경우 
           let results = [];
           snapshot.docs.forEach((doc) => {
             //console.log(doc);
+            // firestore 문서를 javascript 객체로 변환하여 결과 배열에 추가 
             results.push({ id: doc.id, ...doc.data() });
           });
-          setData(results);
+          setData(results); // 데이터 상태 업데이트 
           setIsPending(false);
         }
       })
       .catch((err) => {
-        setError(err.message);
+        setError(err.message); // 에러 상태 업데이트 
         setIsPending(false);
       });
-  }, [query]);
+  }, [query]); // 쿼리 값이 변경될 때마다 useEffect가 실행 
 
   return (
     <div>
