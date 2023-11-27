@@ -1,8 +1,11 @@
 import { useParams } from 'react-router-dom';
 import './Recipe.css';
 import { useFetch } from '../../hooks/useFetch';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export default function Recipe() {
+  const {mode} = useContext(ThemeContext);
   const { id } = useParams();
   const url = 'http://localhost:3030/recipes/' + id;
   const { error, isPending, data: recipe } = useFetch(url);

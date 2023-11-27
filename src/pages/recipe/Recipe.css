@@ -24,6 +24,10 @@
 	margin-right: 10px;
 	color: #777;
 }
+.recipe.dark .recipe li {
+	color: rgb(255, 255, 255);
+}
+
 .recipe li::after {
 	content: ',';
 }
@@ -39,4 +43,8 @@
 .recipe.dark {
   background: #555;
   color: #e4e4e4;
+}
+
+.recipe.dark .page-title {
+	color: azure;
 }
